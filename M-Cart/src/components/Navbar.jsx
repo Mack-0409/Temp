@@ -1,6 +1,8 @@
 import { MapPin } from "lucide-react";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
+
 
 const Navbar = () => {
         const location = false
@@ -17,7 +19,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 {/* menu section */}
-                <nav>
+                <nav className="flex gap-7 items-center">
                     <ul className="flex gap-7 items-center text-xl font-semibold">
                         <li><NavLink to={'/'} 
                                      className={({isActive}) => 
@@ -56,7 +58,25 @@ const Navbar = () => {
                                      >Contact
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink to={'/cart'} className={({isActive}) => 
+                                     `${isActive 
+                                     ? "border-b-3 transition-all border-red-500" 
+                                     : "text-black"} 
+                                     cursor-pointer`}
+                                     >Cart
+                            </NavLink>
+                        </li>
                     </ul>
+                    <div>
+                        <SignedOut>
+                            <SignInButton className="bg-red-500 text-white px-3 py-1 cursor-pointer"/>
+                        </SignedOut>
+                        {/* Show the user button when the user is signed in */}
+                        <SignedIn>
+                            <UserButton />
+                        </SignedIn>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -64,3 +84,4 @@ const Navbar = () => {
 }
 
 export default Navbar
+
