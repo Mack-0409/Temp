@@ -4,8 +4,10 @@ import { Link, NavLink } from "react-router-dom";
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
 
 
-const Navbar = () => {
-        const location = false
+const Navbar = ({location}) => {
+    // const toggleDropdown = () => {
+    //     setOpenDropdown(!openDropdown)
+    // }
     return (
         <div className="bg-white  py-3 shadow-2xl">
             <div className="max-w-6xl mx-auto flex justify-between items-center">
@@ -14,9 +16,18 @@ const Navbar = () => {
                     <Link to={'/'}><h1 className="font-bold texr-3xl"><span className="text-red-500 font-serif">M</span>-Cart</h1></Link>
                     <div className="flex gap-1 cursor-ponter text-gray-700 items-center">
                         <MapPin className="text-red-500"/>
-                        <span className="font-semibold">{location ? <div></div>:"Add Address"}</span>
+                        <span className="font-semibold">{location ? <div className="-space-y-2">
+                            <p>{location.county}</p>
+                            <p>{location.state}</p>
+                        </div>:"Add Address"}</span>
                         {/* <FaCaretDown/> */}
                     </div>
+                    {/* {
+                        openDropdown ? <div className="w-[250px] h-max shadow-2xl z-50 bg-white fixed top-16 left-60 border-2 p-5  bordr-gray-100 rounded-md">
+                            <h1 className="font-semibold mb-4 text-4xl flex justify-between">Change Location</h1>
+
+                        </div> : null
+                    } */}
                 </div>
                 {/* menu section */}
                 <nav className="flex gap-7 items-center">
